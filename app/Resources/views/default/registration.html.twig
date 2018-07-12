@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+    <div class="row">
+    <div class="col-md-6 offset-md-3">
+    <h3 style="width: 980px; margin: auto; padding-bottom: 3%;">Регистрация</h3>
+    <a href="/"><h5 style="width: 980px; margin: auto; padding-bottom: 3%;">Дерево сотрудников</h5></a>
+
+
+    <form method="post" action="{{ path("registration") }}">
+        {{ form_widget(form) }}
+        <input type="submit" value="Добавить" />
+    </form>
+    </div>
+    </div>
+
+    </div>
+{% endblock %}

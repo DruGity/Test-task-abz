@@ -1,0 +1,250 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ */
+class User
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="director_id", type="integer", nullable=true)
+     */
+    private $director_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="secondName", type="string", length=255)
+     */
+    private $secondName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="thirdName", type="string", length=255)
+     */
+    private $thirdName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="position", type="string", length=255)
+     */
+    private $position;
+
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="date_start_work", type="date")
+     */
+    private $dateStartWork;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="salary", type="integer")
+     */
+    private $salary;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set secondName
+     *
+     * @param string $secondName
+     *
+     * @return User
+     */
+    public function setSecondName($secondName)
+    {
+        $this->secondName = $secondName;
+
+        return $this;
+    }
+
+    /**
+     * Get secondName
+     *
+     * @return string
+     */
+    public function getSecondName()
+    {
+        return $this->secondName;
+    }
+
+    /**
+     * Set thirdName
+     *
+     * @param string $thirdName
+     *
+     * @return User
+     */
+    public function setThirdName($thirdName)
+    {
+        $this->thirdName = $thirdName;
+
+        return $this;
+    }
+
+    /**
+     * Get thirdName
+     *
+     * @return string
+     */
+    public function getThirdName()
+    {
+        return $this->thirdName;
+    }
+
+    /**
+     * Set position
+     *
+     * @param string $position
+     *
+     * @return User
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * Set dateStartWork
+     *
+     * @param \DateTime $dateStartWork
+     *
+     * @return User
+     */
+    public function setDateStartWork($dateStartWork)
+    {
+        $this->dateStartWork = $dateStartWork;
+
+        return $this;
+    }
+
+    /**
+     * Get dateStartWork
+     *
+     * @return \DateTime
+     */
+    public function getDateStartWork()
+    {
+        return $this->dateStartWork;
+    }
+
+    /**
+     * Set salary
+     *
+     * @param integer $salary
+     *
+     * @return User
+     */
+    public function setSalary($salary)
+    {
+        $this->salary = $salary;
+
+        return $this;
+    }
+
+    /**
+     * Get salary
+     *
+     * @return int
+     */
+    public function getSalary()
+    {
+        return $this->salary;
+    }
+
+    /**
+     * Set directorId
+     *
+     * @param integer $directorId
+     *
+     * @return User
+     */
+    public function setDirectorId($directorId)
+    {
+        $this->director_id = $directorId;
+
+        return $this;
+    }
+
+    /**
+     * Get directorId
+     *
+     * @return integer
+     */
+    public function getDirectorId()
+    {
+        return $this->director_id;
+    }
+}

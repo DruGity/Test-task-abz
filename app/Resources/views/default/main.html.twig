@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="text-align: center">Иерархия сотрудников в древовидной форме</h1>
+    <a href="/authorized/workers"><h3 style="text-align: center">Список сотрудников</h3></a>
+    {% if is_granted('ROLE_USER') %}
+    <a href="/logout"><h5 style=" text-align: center">Выйти</h5></a>
+    {% else %}
+    <a href="/login"><h5 style="text-align: center">Авторизация</h5></a><a href="/registration"><h5 style="text-align: center">Регистрация</h5></a>
+    {% endif %}
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.5/themes/default/style.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.5/jstree.min.js"></script>
+
+
+    <div id="container"></div>
+    <script>
+        $(function() {
+            $('#container').jstree({
+                "types" : {
+                    "default" : {
+                        "icon" : "glyphicon glyphicon-user"
+                    }
+                },
+                "plugins" : ["types"],
+                'core' : {
+                    'data' : {
+                        "url" : function (node) {
+                            return "/ajax/workers/" + (node.id === "#" ? 0 : node.id);
+                        },
+                        "dataType" : "json"
+                    }
+
+                }
+            });
+        });
+    </script>
+
+
+{% endblock %}
+
+

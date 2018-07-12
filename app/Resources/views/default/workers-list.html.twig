@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="text-align: center">Список сотрудников с сортировкой</h1>
+    <a href="/"><h3 style="text-align: center">Дерево сотрудников</h3></a>
+    {% if is_granted('ROLE_USER') %}
+        <a href="/logout"><h5 style="text-align: center">Выйти</h5></a>
+    {% else %}
+        <a href="/login"><h5 style="text-align: center">Авторизация</h5></a><a href="/registration"><h5 style="text-align: center">Регистрация</h5></a>
+    {% endif %}    <div class="container" style="width: 980px; margin: auto; padding-top: 3%">
+<div class="container">
+    <div class="row" style="justify-content: space-between;">
+
+        <form  style="margin-bottom: 2%" action="{{ path('search') }}" method="get">
+            <label for="search">Поиск</label>
+            <input name="search" type="text">
+            <button type="submit" class="btn btn-primary">Поиск</button>
+        </form>
+
+        <div class="float-right">
+            <a href="{{ path('add_worker') }}"><i class="fa fa-plus" aria-hidden="true">Добавить пользователя</i></a>
+        </div>
+    </div>
+</div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    Картинка
+                </th>
+                <th>
+                    {{ knp_pagination_sortable(workers,'Имя', 'w.name') }} {{ knp_pagination_sortable(workers,'Фамилия', 'w.secondName') }} {{ knp_pagination_sortable(workers,'Отчество', 'w.thirdName') }}
+                </th>
+
+                <th>
+                    {{ knp_pagination_sortable(workers,'Должность', 'w.position') }}
+                </th>
+                <th>
+                    {{ knp_pagination_sortable(workers,'Дата приема на работу', 'w.dateStartWork') }}
+                </th>
+                <th>
+                    {{ knp_pagination_sortable(workers,'Размер заработной платы', 'w.salary') }}
+                </th>
+                <th>
+                    Управление
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for worker in workers %}
+                <tr>
+                    <td>
+                        {% if worker.image != '' %}
+                        <img src="{{ asset('upload/images/' ~ worker.image) }}" width="50px" height="50px">
+                        {% else %}
+                            <img src="{{ asset('upload/images/nophoto.jpg') }}" width="50px" height="50px">
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ worker.name }} {{ worker.secondName }} {{ worker.thirdName }}
+                    </td>
+                    <td>
+                        {{ worker.position }}
+                    </td>
+                    <td>
+                        {{ worker.getDateInString() }}
+                    </td>
+                    <td>
+                        {{ worker.salary }}
+                    </td>
+                    <td>
+                        <a href="/authorized/delete/{{ worker.id }}">Удалить</a>
+                        <a href="/authorized/edit/{{ worker.id }}">Редактировать</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <div class="navigation text-center">
+            {{ knp_pagination_render(workers) }}
+        </div>
+    </div>
+
+{% endblock %}
+
+
